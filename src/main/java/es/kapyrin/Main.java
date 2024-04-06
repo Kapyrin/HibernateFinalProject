@@ -27,8 +27,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     private final SessionFactory sessionFactory;
     private final RedisClient redisClient;
@@ -50,6 +49,7 @@ public class Main {
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.DRIVER, "com.p6spy.engine.spy.P6SpyDriver");
         properties.put(Environment.URL, "jdbc:p6spy:mysql://localhost:3306/world");
+//        properties.put(Environment.URL, "jdbc:p6spy:mysql://mysql:3306/world");
         properties.put(Environment.USER, "root");
         properties.put(Environment.PASS, "root");
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
@@ -92,6 +92,7 @@ public class Main {
 
     private RedisClient prepareRedisClient() {
         RedisClient redisClient = RedisClient.create(RedisURI.create("localhost", 6379));
+//        RedisClient redisClient = RedisClient.create("redis://redis:6379");
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             System.out.println("\nConnected to Redis\n");
         }
